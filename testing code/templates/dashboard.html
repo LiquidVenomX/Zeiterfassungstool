@@ -8,15 +8,31 @@
 <body>
     <h1>Willkommen, {{ current_user.username }}!</h1>
     <p>Dies ist dein persönliches Dashboard.</p>
-    <p>Hier kannst du deine Zeiterfassung verwalten.</p>
-      <!-- Zeiterfassungsformular -->
-      <form action="{{ url_for('add_time') }}" method="post">
+
+    <h2>Zeiterfassung</h2>
+    <form action="{{ url_for('add_time') }}" method="post">
         <label for="start_time">Startzeit:</label>
-        <input type="datetime-local" name="start_time" required>
+        <input type="datetime-local" id="start_time" name="start_time" required>
+
         <label for="end_time">Endzeit:</label>
-        <input type="datetime-local" name="end_time" required>
+        <input type="datetime-local" id="end_time" name="end_time" required>
+
         <button type="submit">Zeiterfassung hinzufügen</button>
     </form>
+
+    <h2>Zeiterfassungsübersicht</h2>
+    <ul>
+        {% for start_time, end_time in user_times %}
+            <li>{{ start_time }} - {{ end_time }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Gesamtarbeitszeit</h2>
+    <p>{{ total_hours }} Stunden</p>
+
+    <h2>Pensum-Soll</h2>
+    <p>{{ pensum_hours }} Stunden</p>
+
     <a href="{{ url_for('logout') }}">Abmelden</a>
 </body>
 </html>
