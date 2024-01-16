@@ -35,8 +35,8 @@ Die Anwendung sollte unter http://127.0.0.1:5000/ erreichbar sein.
 Benutzerdaten
 Die Benutzerdaten werden in einer SQLite-Datenbank (user_database.db) gespeichert. Standardmäßig ist ein Benutzer mit den folgenden Anmeldeinformationen vorhanden:
 
-Benutzername: MeT
-Passwort: Velo40@4900
+Benutzername: admin
+Passwort: 1234
 Hinweis: Dieses Projekt ist als Beispiel gedacht und sollte nicht in einer Produktionsumgebung eingesetzt werden, es sei denn, entsprechende Sicherheitsüberlegungen wurden berücksichtigt.
 
 Autor
