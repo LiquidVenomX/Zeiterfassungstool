@@ -1,7 +1,6 @@
 import sqlite3
 from flask import Flask, render_template, redirect, url_for, request
 from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
-from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'geheimeschluessel'  # Geheimer Schlüssel für Sessions (kann beliebig geändert werden)
@@ -22,7 +21,6 @@ def load_user(user_id):
     cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))
     user_data = cursor.fetchone()
     conn.close()
-    print("Loaded user:", user_data)
     if user_data:
         return User(user_data[0], user_data[1], user_data[2])
     return None
@@ -31,16 +29,12 @@ def load_user(user_id):
 def create_user():
     conn = sqlite3.connect('user_database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', ('admin', generate_password_hash('1234')))
+    cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', ('admin', '1234'))
     conn.commit()
     conn.close()
 
-# Funktion zur Datenbankverbindung
-def connect_db():
-    return sqlite3.connect('user_database.db')
-
 # Initialisierung der Benutzertabelle in der Datenbank
-conn = connect_db()
+conn = sqlite3.connect('user_database.db')
 cursor = conn.cursor()
 cursor.execute('''CREATE TABLE IF NOT EXISTS users
                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,7 +44,7 @@ conn.commit()
 conn.close()
 
 # Überprüfen, ob der Standardbenutzer bereits vorhanden ist, andernfalls erstellen
-conn = connect_db()
+conn = sqlite3.connect('user_database.db')
 cursor = conn.cursor()
 cursor.execute('SELECT * FROM users WHERE username = ?', ('admin',))
 existing_user = cursor.fetchone()
@@ -72,7 +66,7 @@ def login():
         password = request.form['password']
 
         # Datenbankverbindung und Überprüfung der Anmeldeinformationen
-        conn = connect_db()
+        conn = sqlite3.connect('user_database.db')
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
         user_data = cursor.fetchone()
