@@ -56,7 +56,7 @@ def benutzer_anmelden_gui():
     anmelden_button = tk.Button(window, text='Anmelden', command=lambda: anmelden(benutzername_entry.get(), passwort_entry.get()))
     anmelden_button.pack()
 
-# Aufruf der Funktion für die Benutzeranmeldung GUI
+# Aufruf der Funktion für die Benutzeranmeldung GUI.
 benutzer_anmelden_gui()
 
 # Schritt 5: Starte die Hauptfenster-Schleife
