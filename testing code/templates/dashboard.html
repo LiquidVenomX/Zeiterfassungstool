@@ -9,6 +9,14 @@
     <h1>Willkommen, {{ current_user.username }}!</h1>
     <p>Dies ist dein persönliches Dashboard.</p>
     <p>Hier kannst du deine Zeiterfassung verwalten.</p>
+      <!-- Zeiterfassungsformular -->
+      <form action="{{ url_for('add_time') }}" method="post">
+        <label for="start_time">Startzeit:</label>
+        <input type="datetime-local" name="start_time" required>
+        <label for="end_time">Endzeit:</label>
+        <input type="datetime-local" name="end_time" required>
+        <button type="submit">Zeiterfassung hinzufügen</button>
+    </form>
     <a href="{{ url_for('logout') }}">Abmelden</a>
 </body>
 </html>
