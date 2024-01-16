@@ -30,43 +30,34 @@ def passwort_aendern(benutzername, neues_passwort):
     messagebox.showinfo('Erfolg', 'Passwort wurde erfolgreich geändert!')
 
 # Schritt 4: Definiere Funktionen für die GUI
+def anmelden(benutzername, passwort):
+    # Hier implementierst du die Anmeldefunktion
+    # Zum Beispiel: Überprüfe die Anmeldeinformationen in der Datenbank
+    # Wenn erfolgreich, zeige eine Erfolgsmeldung an, sonst zeige eine Fehlermeldung an
+    if benutzername == 'admin' and passwort == '1234':
+        messagebox.showinfo('Erfolg', 'Anmeldung erfolgreich!')
+    else:
+        messagebox.showerror('Fehler', 'Falscher Benutzername oder Passwort!')
+
 def benutzer_anmelden_gui():
-    # Hier kannst du GUI-Elemente für die Benutzeranmeldung hinzufügen
-    pass
+    anmelde_label = tk.Label(window, text='Benutzeranmeldung')
+    anmelde_label.pack()
 
-def zeiterfassung_gui():
-    # Hier kannst du GUI-Elemente für die Zeiterfassung hinzufügen
-    pass
-
-def admin_console_gui():
-    # GUI-Elemente für die Admin-Konsole erstellen
     benutzername_label = tk.Label(window, text='Benutzername:')
     benutzername_entry = tk.Entry(window)
-    passwort_label = tk.Label(window, text='Passwort:')
-    passwort_entry = tk.Entry(window, show='*')
-
-    def create_user():
-        benutzer_anlegen(benutzername_entry.get(), passwort_entry.get())
-
-    def delete_user():
-        benutzer_loeschen(benutzername_entry.get())
-
-    def change_password():
-        passwort_aendern(benutzername_entry.get(), passwort_entry.get())
-
     benutzername_label.pack()
     benutzername_entry.pack()
+
+    passwort_label = tk.Label(window, text='Passwort:')
+    passwort_entry = tk.Entry(window, show='*')
     passwort_label.pack()
     passwort_entry.pack()
 
-    create_button = tk.Button(window, text='Benutzer anlegen', command=create_user)
-    create_button.pack()
+    anmelden_button = tk.Button(window, text='Anmelden', command=lambda: anmelden(benutzername_entry.get(), passwort_entry.get()))
+    anmelden_button.pack()
 
-    delete_button = tk.Button(window, text='Benutzer löschen', command=delete_user)
-    delete_button.pack()
-
-    change_password_button = tk.Button(window, text='Passwort ändern', command=change_password)
-    change_password_button.pack()
+# Aufruf der Funktion für die Benutzeranmeldung GUI
+benutzer_anmelden_gui()
 
 # Schritt 5: Starte die Hauptfenster-Schleife
 window.mainloop()
