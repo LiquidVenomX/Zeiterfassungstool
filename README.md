@@ -22,13 +22,9 @@ Dieses Projekt ist ein einfaches Zeiterfassungstool, das mit Flask, einer Web-Fr
    cd Zeiterfassungstool
 Installiere die erforderlichen Python-Pakete:
 
-bash
-Copy code
 pip install Flask Flask-Login
 Starte die Anwendung:
 
-bash
-Copy code
 python Zeiterfassung_flask_httpd.py
 Die Anwendung sollte unter http://127.0.0.1:5000/ erreichbar sein.
 
