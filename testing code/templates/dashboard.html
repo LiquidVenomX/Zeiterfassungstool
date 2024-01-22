@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 </head>
 <body>
     <h1>Willkommen, {{ current_user.username }}!</h1>
-    <p>Dies ist dein persönliches Dashboard.</p>
 
-    <h2>Zeiterfassung</h2>
     <form action="{{ url_for('add_time') }}" method="post">
         <label for="start_time">Startzeit:</label>
         <input type="datetime-local" id="start_time" name="start_time" required>
@@ -31,7 +30,16 @@
     <p>{{ total_hours }} Stunden</p>
 
     <h2>Pensum-Soll</h2>
+    <form action="{{ url_for('dashboard') }}" method="get">
+        <label for="pensum_hours">Pensum (Stunden pro Woche):</label>
+        <input type="number" id="pensum_hours" name="pensum_hours" value="{{ pensum_hours }}" required>
+        <button type="submit">Aktualisieren</button>
+    </form>
+
     <p>{{ pensum_hours }} Stunden</p>
+
+    <h2>Erreichtes Pensum</h2>
+    <p>{{ achieved_percent }}%</p>
 
     <a href="{{ url_for('logout') }}">Abmelden</a>
 </body>
