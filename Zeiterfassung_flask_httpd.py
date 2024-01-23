@@ -70,7 +70,7 @@ def login():
             print(f"Benutzer {username} erfolgreich angemeldet!")
             return redirect(url_for('dashboard'))
         else:
-            print("Falscher Benutzername oder Passwort!")
+            print("Falscher Benutzername oder Passwort!") #
 
     return render_template('login.html')
 
@@ -142,4 +142,5 @@ def add_user_time(user_id, start_time, end_time):
     conn.close()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
